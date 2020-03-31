@@ -1,0 +1,371 @@
+body{
+    background: url(/img/backgrounds/1.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-width: 600px;
+    font-family: 'Ubuntu', sans-serif;
+    overflow: hidden;
+}
+@font-face {
+    font-family: "FontAwesome";
+    src: url("/fonts/fontawesome-webfont.eot");
+    src: url("/fonts/fontawesome-webfont.eot?#iefix") format('eot'),
+    url("/fonts/fontawesome-webfont.woff") format('woff'),
+    url("/fonts/fontawesome-webfont.ttf") format('truetype'),
+    url("/fonts/fontawesome-webfont.svg#FontAwesome") format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+:active, :focus {
+    outline: 0;
+}
+#bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:50px;
+    background-image:url(/img/dvsup.png);
+    border-top:1px solid #333;
+    z-index: 6;
+}
+#fixButton{
+    float:left;
+    position:absolute;
+    bottom:30px;
+    left:30px;
+}
+#playButton {
+    cursor:pointer;
+    font-family: "FontAwesome";
+    text-shadow: 0px 1px 1px rgba(250,250,250,0.1);
+    font-size: 32pt;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    box-shadow: 0px 3px 0px 0px rgb(34,34,34),
+    0px 7px 10px 0px rgb(17,17,17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -12px 35px 0px rgba(0, 0, 0, .5);
+    width: 70px;
+    height: 70px;
+    border: 0;
+    color: rgb(37,37,37);
+    border-radius: 35px;
+    text-align: center;
+    line-height: 79px;
+    background-color: rgb(83,87,93);
+    transition: color 350ms ease, text-shadow 350ms;
+    -o-transition: color 350ms ease, text-shadow 350ms;
+    -moz-transition: color 350ms ease, text-shadow 350ms;
+    -webkit-transition: color 350ms ease, text-shadow 350ms;
+}
+#playButton:before {
+    content: "";
+    width: 80px;
+    height: 80px;
+    display: block;
+    z-index: -2;
+    position: absolute;
+    background-color: rgb(26,27,29);
+    left: -5px;
+    top: -2px;
+    border-radius: 40px;
+    box-shadow: 0px 1px 0px 0px rgba(250,250,250,0.1),
+    inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+#playButton:active {
+    box-shadow: 0px 0px 0px 0px rgb(34,34,34),
+    0px 3px 7px 0px rgb(17,17,17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -10px 35px 5px rgba(0, 0, 0, .5);
+    background-color: rgb(83,87,93);
+    top: 3px;
+}
+#playButton.on {
+    box-shadow: 0px 0px 0px 0px rgb(34,34,34),
+    0px 3px 7px 0px rgb(17,17,17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -10px 35px 5px rgba(0, 0, 0, .5);
+    background-color: rgb(83,87,93);
+    top: 3px;
+    color: #fff;
+    text-shadow: 0px 0px 3px rgb(250,250,250);
+}
+#playButton:active:before, #playButton.on:before {
+    top: -5px;
+    background-color: rgb(26,27,29);
+    box-shadow: 0px 1px 0px 0px rgba(250,250,250,0.1),
+    inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* Styling the Indicator light */
+#playButton + span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: rgb(226,0,0);
+    box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),
+    0px 0px 3px 2px rgba(226,0,0,0.5);
+    border-radius: 4px;
+    clear: both;
+    position: absolute;
+    bottom: -15px;
+    left: 42%;
+    transition: background-color 350ms, box-shadow 700ms;
+    -o-transition: background-color 350ms, box-shadow 700ms;
+    -moz-transition: background-color 350ms, box-shadow 700ms;
+    -webkit-transition: background-color 350ms, box-shadow 700ms;
+}
+#playButton.on + span {
+    box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),
+    0px 0px 3px 2px rgba(135,187,83,0.5);
+    background-color: rgb(135,187,83);
+}
+.hidden{
+    position:absolute;
+    left:-10000000px;
+}
+#volumeSlider{
+    position:absolute;
+    top:15px;
+    left:100px;
+}
+#eventBlock{
+    width:100%;
+    height:100%;
+    z-index: 5;
+    background: rgba(0,0,0,0.8);
+    color:white;
+    position: absolute;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 50%;
+    text-align: center;
+}
+#eventOfDay{
+    width:33%;
+    height:100%;
+    position:absolute;
+    background:rgba(0,0,0,0.3);
+    border-right:1px solid rgba(255,255,255,0.3);
+}
+#eventOfDay > h1{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 100px;
+    font-weight: bold;
+}
+#eventOfDay > h3{
+    margin-top:30px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+#eventExp > ul > li{
+    list-style: circle;
+}
+#eventExp{
+    color: white;
+    padding: 20px;
+    position: absolute;
+    bottom:75px;
+    font-size: 14px;
+    line-height: 25px;
+    background : rgba(0,0,0,0.6);
+}
+#wallWrapper{
+    position:absolute;
+    right:0;
+    width:67%;
+    height:100%;
+    background: rgba(255,255,255,0.2);
+}
+#wall{
+    width:100%;
+    height:100%;
+    padding-bottom:50px;
+}
+.wallItem{
+    background:rgba(0,0,0,0.5);
+    padding:5px;
+    width:160px;
+    font-weight: 300;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: 0.8s;
+    min-height: 50px;
+    margin:5px;
+    border-left: 7px solid black;
+}
+
+.wallItemHeader > img{
+    display: inline;
+    margin:4px;
+    border-radius:30px;
+    float: left;
+    border:1px solid #777;
+}
+.clear{
+    clear:both;
+}
+.wallItemHeader{
+    color:white;
+    display: inline;
+    width:100%;
+    font-size: 13px;
+    font-weight: bold;
+}
+.wallItemContent{
+    display: inline;
+    color:white;
+    font-size: 13px;
+    width:180px;
+    word-break: break-all;
+}
+.wallItem a{
+    color:white;
+    text-decoration: underline;
+    opacity:0.7;
+}
+.wallItem a:hover{
+    opacity: 1;
+}
+.eventGlow{
+    width:100%;
+    position: absolute;
+    bottom:50%;
+}
+.eventPicture{
+    position: absolute;
+    bottom:50%;
+    width: 100%;
+    background:url('/img/subject.png') no-repeat center center;
+    height:300px;
+}
+#fbButton{
+    margin-top:10px;
+    float:right;
+    margin-top: 10px;
+    margin-right: 10px;
+    opacity:0.7;
+    cursor:pointer;
+    transition:all 0.2s;
+}
+#fbButton:hover{
+    opacity: 1;
+}
+#loggedInFb{
+    position: absolute;
+    right:0;
+}
+#fbPic{
+    display: inline;
+    border-radius: 30px;
+    box-shadow: 0 0 10px white;
+    margin-top:10px;
+}
+.welcomeText{
+    color:white;
+    position: relative;
+    top:-11px;
+}
+#postButton{
+    color:white;
+    height:50px;
+    line-height: 50px;
+    cursor: pointer;
+    position: relative;
+    width:100%;
+    text-align: center;
+}
+#postButton:hover{
+    background-color:rgba(255,255,255,0.3);
+}
+#loggedInFbInner{
+    margin-right: 350px;
+}
+#sendMessage{
+    display: block;
+    width:310px;
+    height:330px;
+    position: fixed;
+    right:0;
+    bottom:-280px;
+    z-index: 1;
+    background-color: rgba(30,30,30,0.9);
+    margin-left: 10px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#sendMessage:hover{
+    bottom:0px;
+}
+label{
+    display: block;
+    color:white;
+}
+textarea{
+    padding: 30px;
+    margin-top: 15px;
+    width: 220px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 5px;
+    resize: none;
+    border:1px solid #555;
+    color:white;
+    font-family: 'Ubuntu', sans-serif;
+    height:130px;
+}
+.sendButton{
+    cursor: pointer;
+    width: 100%;
+    border:1px solid #25729a; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+    background-color: #3093c7; background-image: -webkit-gradient(linear, left top, left bottom, from(#3093c7), to(#1c5a85));
+    background-image: -webkit-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -moz-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -ms-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -o-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: linear-gradient(to bottom, #3093c7, #1c5a85);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#3093c7, endColorstr=#1c5a85);
+}
+
+.sendButton:hover{
+    border:1px solid #1c5675;
+    background-color: #26759e; background-image: -webkit-gradient(linear, left top, left bottom, from(#26759e), to(#133d5b));
+    background-image: -webkit-linear-gradient(top, #26759e, #133d5b);
+    background-image: -moz-linear-gradient(top, #26759e, #133d5b);
+    background-image: -ms-linear-gradient(top, #26759e, #133d5b);
+    background-image: -o-linear-gradient(top, #26759e, #133d5b);
+    background-image: linear-gradient(to bottom, #26759e, #133d5b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#26759e, endColorstr=#133d5b);
+}
+.sendButton:active{
+    position: relative;
+    top:2px;
+}
+#sendMessageInner{
+    padding:15px;
+}
+#counter{
+    line-height: 60px;
+    color:white;
+    text-align: center;
+    font-size: 20px;
+}
+#count{
+    font-weight: bold;
+    font-size: 40px;
+}
+#twitterButton{
+    float:right;
+    margin-top: 11px;
+    margin-right: 10px;
+}
+#SkypeButton_Call_ondansonrafm_1{
+    float:right;
+}
